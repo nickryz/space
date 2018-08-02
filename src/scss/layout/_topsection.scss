@@ -1,0 +1,81 @@
+.topsection {
+    background: black;
+    height: 200vh;
+}
+
+.topsection__bg-group {
+    width: 100%;
+    height: 200vh;
+    position: absolute;
+    background: linear-gradient(0deg, rgba(237,228,222,1) 0%, rgba(127,148,155,1) 25%, rgba(52,69,76,1) 67%, rgba(0,3,12,1) 100%);
+}
+
+.topsection__bg {
+    position: absolute;
+
+    &--stars {
+        width: 400%;
+        height: 400%;
+        top: -60%;
+        left: -170%;
+    }
+
+    // &--mount {
+    //     width: 100%;
+    //     height: 333px;
+    //     position: absolute;
+    //     bottom: 0;
+    //     left: 0;
+    //     background-image: url(../img/mount.png);
+    //     background-size: 800px 333px;
+    //     background-position-x: center;
+    // }
+}
+
+.stars {
+    background-image: url(../img/stars.png);
+    background-size: 800px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    animation: stars1 infinite 240s linear; 
+    transform-origin: 60% 40%;
+
+    @keyframes stars1 {
+        // from {
+        //     transform: rotate(0);
+        // }
+        to {
+            transform: rotate(1turn);
+        }
+    }
+
+
+        &--small {
+            background-size: 360px;
+            opacity: 0.3;
+            animation: stars2 infinite 480s linear; 
+        }
+
+        @keyframes stars2 {
+            // from {
+            //     transform: rotate(0);
+            // }
+            to {
+                transform: rotate(1turn);
+            }
+        }
+}
+
+.bg-img--mount {
+    width: 100%;
+    display: block;
+    height: auto;
+    bottom: 0;
+    margin: 0 auto;
+    position: absolute;
+}
+

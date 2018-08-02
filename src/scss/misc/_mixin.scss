@@ -1,0 +1,108 @@
+$mq-tablet-ls				: 1279px !default;
+$mq-tablet-pr				: 991px !default;
+$mq-mobile-ls				: 767px !default;
+$mq-mobile-pr				: 575px !default;
+
+@mixin tablet-ls {
+	@media (max-width : $mq-tablet-ls) {
+		@content;
+	}
+}
+
+@mixin tablet-pr {
+	@media (max-width : $mq-tablet-pr) {
+		@content;
+	}
+}
+
+@mixin mobile-ls {
+	@media (max-width : $mq-mobile-ls) {
+		@content;
+	}
+}
+
+@mixin mobile-pr {
+	@media (max-width : $mq-mobile-pr) {
+		@content;
+	}
+}
+
+
+@mixin container {
+	max-width: 1300px;
+	margin: 0 auto;
+	// overflow: hidden;
+	// position: relative;
+	padding: 0 15px;	
+
+	@include tablet-ls {
+		max-width: 1024px;
+		padding: 0 30px;	
+	}
+	
+	@include tablet-pr {
+		max-width: 783px; 
+	}
+
+	@include mobile-ls {
+		max-width: 100%; 
+	}
+	
+	@include mobile-pr {
+		width: 100%; 
+	}
+}
+@mixin container--payform {
+	max-width: 881px;
+	margin: 0 auto;
+	padding: 0 15px;	
+
+	// @include tablet-ls {
+	// 	max-width: 1024px;
+	// 	padding: 0 30px;	
+	// }
+	
+	// @include tablet-pr {
+	// 	max-width: 783px; 
+	// }
+
+	// @include mobile-ls {
+	// 	max-width: 100%; 
+	// }
+	
+	// @include mobile-pr {
+	// 	width: 100%; 
+	// }
+}
+
+
+@mixin titlestyle {
+	color: $accentcolor;
+	text-transform: uppercase;
+	margin: 0;
+	letter-spacing: -0.2px;
+}
+
+@mixin bigTitle {
+	@include titlestyle;
+	font-size: 3.125rem;
+	font-weight: 300;
+}
+
+@mixin middleTitle {
+	@include titlestyle;
+	font-size: 2.188rem;
+	font-weight: 300;
+}
+
+@mixin smallTitle {
+	@include titlestyle;
+	font-size: 1.875rem;
+	font-weight: 700;
+}
+
+@mixin extrasmallTitle {
+	@include titlestyle;
+	font-size: 1.375rem;
+	font-weight: 300;
+}

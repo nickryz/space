@@ -1,0 +1,45 @@
+* {
+	box-sizing: border-box;
+	
+}
+
+
+html, body {
+    width: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: auto;
+    overflow: hidden;
+}
+
+.mainpage-group {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.section {
+    top: 0;
+    left: 0;
+    width: 100%;
+	height: 100vh;
+	position: relative;
+	
+	&--one {
+		background: black;
+    	height: 200vh;
+	}
+	&--two {
+		background: yellow;
+	}
+	&--three {
+		background: rgb(248, 118, 118);
+	}
+}
