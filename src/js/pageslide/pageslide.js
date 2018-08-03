@@ -11,6 +11,7 @@ export class Pageslide {
         // markers options
         this.markerActiveClass = opt.markers.markerActiveClass;
         this.markerStatus = opt.markers.markerStatus || false;
+        this.markerElHTML = opt.markers.markerElHTML || '<li class="marker"></li>';
 
         // transition options
         this.transitionStatus = opt.transition.transitionStatus || true;
@@ -25,8 +26,6 @@ export class Pageslide {
         this.currentSlideId = 0;
         this.prevSlideId = 0;
 
-        // listener
-        this._listener();
 
         // start fn
         this._startingChanges();
@@ -49,16 +48,29 @@ export class Pageslide {
     _scrollFromMarkerClick(e) {
         let target = e.target;
         let id = target.getAttribute('data-id');
-        console.log(id)
         if(!id) return;
+        if(id == this.currentSlideId) return;
+        
+        if(id < this.prevSlideId) {
+            this.currentTranslate = -id * this.scrollStep + this.scrollStep;
+            this._setTranslate('down');
+        } else {
+            this.currentTranslate = -id * this.scrollStep - this.scrollStep;
+            this._setTranslate('up');
+        }
     }
 
     _startingChanges() {
         document.body.style.overflow = 'hidden';
 
-        if(this.markerStatus) {         // set active class for marker at first
-            this._changeActiveMarker();
+        if(this.markerStatus) {        
+            for(let i = 0; i < this.pagesGroup.children.length; i++) {
+                this.markersGroup.innerHTML += this.markerElHTML;
+            }
+            this._changeActiveMarker();  // set active class for marker at first
         }
+
+        this._listener();
     }
 
     _scrollHandler(e) {
@@ -92,7 +104,7 @@ export class Pageslide {
         if(this._checkTimer()) return;
         let touchY = e.changedTouches[0].clientY;
         let diff = this.touchStartY - touchY;
-        if(Math.abs(diff) < 20) return;
+        if(Math.abs(diff) < 100) return;
         if(diff > 0) {
             this._setTranslate('down');
         } else if (diff < 0) {
@@ -108,6 +120,7 @@ export class Pageslide {
 
     _setTranslate(path) {
         let step;
+        // console.log(this.currentTranslate)
         if(path === 'down') {
             step = Math.max(this.currentTranslate - this.scrollStep, this.pagesGroup.children.length * -this.scrollStep);
         } else if (path === 'up') {
@@ -115,6 +128,7 @@ export class Pageslide {
         }
         this.pagesGroup.style.transform = `translateY(${step + this.scrollUnit})`;
         this.currentTranslate = step;
+        // console.log(this.currentTranslate, 2)
 
         this._setCurrentSlideId();
 

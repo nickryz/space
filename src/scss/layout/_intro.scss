@@ -5,7 +5,7 @@
     transform: translateY(-50%);
     z-index: 1;
     list-style: none;
-    padding: 30px;
+    padding: 20px;
     margin: 0;
 }
 
@@ -13,7 +13,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #fff;
+    background: rgba($color: #fff, $alpha: 0.7);
     cursor: pointer;
     margin: 15px auto;
     transition: transform 0.5s ease-in,
@@ -25,6 +25,6 @@
 
     &--active {
         transform: scale(1.5);
-        background: red;
+        background:  rgba($color: red, $alpha: 0.7);
     }
 }

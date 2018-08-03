@@ -8,17 +8,18 @@ function init () {
         pagesGroupId: '.mainpage-group', // sellector with pages group
         scroll: {                        // scroll options
             step: 100,
-            unit: '%'
+            unit: '%'     
         },                
         transition: {                    // transition options
             transitionStatus: true,
             transitionDelay: 1,
-            transitionType: 'ease-in'
+            transitionType: 'ease-in'    
         },
         markers: {
             markerStatus: true,
             markersWrapId: '.markers-group',
-            markerActiveClass: 'marker--active'
+            markerActiveClass: 'marker--active',
+            markerElHTML: '<li class="marker"></li>'
         }
     });
 }
