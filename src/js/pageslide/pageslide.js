@@ -35,7 +35,7 @@ export class Pageslide {
         window.addEventListener('wheel', this._scrollHandler.bind(this));
         window.addEventListener('keydown', this._keyHandler.bind(this));
         window.addEventListener('touchstart', this._touchStartHandler.bind(this));
-        window.addEventListener('touchend', this._touchEndHandler.bind(this));
+        window.addEventListener('touchmove', this._touchEndHandler.bind(this));
 
         if(this.markerStatus) {
             for(let i = 0; i < this.markersGroup.children.length; i++) {
@@ -105,7 +105,6 @@ export class Pageslide {
         if(this._checkTimer()) return;
         let touchY = e.changedTouches[0].clientY;
         let diff = this.touchStartY - touchY;
-        if(Math.abs(diff) < 25) return;
         if(diff > 0) {
             this._setTranslate('down');
         } else if (diff < 0) {
