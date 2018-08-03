@@ -62,6 +62,7 @@ export class Pageslide {
 
     _startingChanges() {
         document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
 
         if(this.markerStatus) {        
             for(let i = 0; i < this.pagesGroup.children.length; i++) {
