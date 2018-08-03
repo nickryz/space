@@ -2,10 +2,15 @@ export class Pageslide {
     constructor(opt) {
         // DOM
         this.pagesGroup = document.querySelector(opt.pagesGroupId);
+        this.markersGroup = document.querySelector(opt.markers.markersWrapId);
 
         // start options
         this.scrollStep = opt.scroll.step || 100;
         this.scrollUnit = opt.scroll.unit || '%';
+
+        // markers options
+        this.markerActiveClass = opt.markers.markerActiveClass;
+        this.markerStatus = opt.markers.markerStatus || false;
 
         // transition options
         this.transitionStatus = opt.transition.transitionStatus || true;
@@ -17,9 +22,14 @@ export class Pageslide {
         this.currentTranslate = 0;
         this.LastTime = new Date();
         this.touchStartY;
+        this.currentSlideId = 0;
+        this.prevSlideId = 0;
 
         // listener
         this._listener();
+
+        // start fn
+        this._startingChanges();
     }
      
     _listener() {
@@ -27,6 +37,28 @@ export class Pageslide {
         window.addEventListener('keydown', this._keyHandler.bind(this));
         window.addEventListener('touchstart', this._touchStartHandler.bind(this));
         window.addEventListener('touchend', this._touchEndHandler.bind(this));
+
+        if(this.markerStatus) {
+            for(let i = 0; i < this.markersGroup.children.length; i++) {
+                this.markersGroup.children[i].setAttribute('data-id', i)
+            }
+            this.markersGroup.addEventListener('click', this._scrollFromMarkerClick.bind(this));
+        }
+    }
+
+    _scrollFromMarkerClick(e) {
+        let target = e.target;
+        let id = target.getAttribute('data-id');
+        console.log(id)
+        if(!id) return;
+    }
+
+    _startingChanges() {
+        document.body.style.overflow = 'hidden';
+
+        if(this.markerStatus) {         // set active class for marker at first
+            this._changeActiveMarker();
+        }
     }
 
     _scrollHandler(e) {
@@ -83,6 +115,12 @@ export class Pageslide {
         }
         this.pagesGroup.style.transform = `translateY(${step + this.scrollUnit})`;
         this.currentTranslate = step;
+
+        this._setCurrentSlideId();
+
+        if(this.markerStatus) {
+            this._changeActiveMarker();
+        }
     }
 
     // init start options
@@ -91,5 +129,17 @@ export class Pageslide {
             this.pagesGroup.style.transition = `transform ${this.transitionDelay}s ${this.transitionType}`;
             this.pagesGroup.style.willChange = `transform`;
         }
+    }
+
+    _setCurrentSlideId() {
+       this.prevSlideId = this.currentSlideId;
+       this.currentSlideId = Math.abs(this.currentTranslate/this.scrollStep);
+    }
+
+    _changeActiveMarker() {
+        if(this.markersGroup.children[this.prevSlideId].classList.contains(this.markerActiveClass)) {
+            this.markersGroup.children[this.prevSlideId].classList.remove(this.markerActiveClass)
+        }
+        this.markersGroup.children[this.currentSlideId].classList.add(this.markerActiveClass)
     }
 }

@@ -1,0 +1,30 @@
+.markers-group {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    list-style: none;
+    padding: 30px;
+    margin: 0;
+}
+
+.marker {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    margin: 15px auto;
+    transition: transform 0.5s ease-in,
+               background-color 0.5s ease-in; 
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &--active {
+        transform: scale(1.5);
+        background: red;
+    }
+}

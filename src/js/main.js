@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', init);
- 
+
 import {Pageslide} from './pageslide/pageslide.js'
- 
+   
 function init () {
 
     let slide = new Pageslide({
@@ -14,6 +14,11 @@ function init () {
             transitionStatus: true,
             transitionDelay: 1,
             transitionType: 'ease-in'
+        },
+        markers: {
+            markerStatus: true,
+            markersWrapId: '.markers-group',
+            markerActiveClass: 'marker--active'
         }
     });
 }
