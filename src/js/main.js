@@ -13,7 +13,7 @@ function init () {
         transition: {                    // transition options
             transitionStatus: true,
             transitionDelay: 1,
-            transitionType: 'ease-in'    
+            transitionType: 'ease-in'     
         },
         markers: {
             markerStatus: true,
