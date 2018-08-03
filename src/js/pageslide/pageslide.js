@@ -104,7 +104,7 @@ export class Pageslide {
         if(this._checkTimer()) return;
         let touchY = e.changedTouches[0].clientY;
         let diff = this.touchStartY - touchY;
-        if(Math.abs(diff) < 50) return;
+        if(Math.abs(diff) < 25) return;
         if(diff > 0) {
             this._setTranslate('down');
         } else if (diff < 0) {
