@@ -1,6 +1,7 @@
 .topsection {
     background: black;
     height: 200%;
+    // perspective: 60px;
 }
 
 .topsection__bg-group {
@@ -77,5 +78,91 @@
     bottom: -2px;
     margin: 0 auto;
     position: absolute;
+}
+
+
+$timing: 10s;
+
+.topsection-dscr {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    font-family: "STARWARS", sans-serif;
+    text-transform: uppercase;
+    line-height: 2;
+    letter-spacing: 3px;
+    color: yellow;
+    text-align: center;
+    font-size: 2rem;
+    transform: perspective(250px) rotateX(14deg);
+    transform-origin: 50% 100%;
+    width: 100%;
+    height: 100%;
+    margin-left: -50%;
+    overflow: hidden;
+    // opacity: 0;
+    // animation: 0s textanimete1 10s linear forwards;
+
+    // @keyframes textanimete1 {
+    //     to {opacity: 1}
+    // }
+
+    // &::before {
+    //     content: '';
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 40%;
+    //     background: linear-gradient(to bottom, #0a0f18d6 0%, rgba(0,0,0,0) 100%);
+    //     top: 0;
+    //     left: 0;
+    //     z-index: 99;
+    // }
+
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 5%;
+    //     background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,  #26343b 100%);
+    //     bottom: 0;
+    //     left: 0;
+    // }
+
+    .dscr-title {
+      position: absolute;
+      top: 100%;
+      transform: translateY(0);
+      animation: 350s textanimete $timing linear;
+
+        @keyframes textanimete {
+            to {transform: translateY(-100%)}
+        }
+    }
+}
+
+.intro {
+    background: url(../img/sw.svg) center no-repeat;
+    background-size: cover;
+    margin: 50px;
+    width: 1000px;
+    height: 428px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform-origin: 50% 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: $timing intro 1s linear forwards;
+    
+    @keyframes intro {
+        99% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+
+        100% {
+            display: none; 
+            transform: translate(-50%, -50%) scale(0);
+        }
+    }
 }
 
